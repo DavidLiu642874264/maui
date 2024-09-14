@@ -24,7 +24,7 @@ namespace Microsoft.Maui.Platform
 			set => _reference = value == null ? null : new(value);
 		}
 
-		bool RespondsToSafeArea()
+		static bool RespondsToSafeArea()
 		{
 			if (_respondsToSafeArea.HasValue)
 				return _respondsToSafeArea.Value;
@@ -36,7 +36,7 @@ namespace Microsoft.Maui.Platform
 			if (KeyboardAutoManagerScroll.ShouldIgnoreSafeAreaAdjustment)
 				KeyboardAutoManagerScroll.ShouldScrollAgain = true;
 
-			if (View is not ISafeAreaView sav || sav.IgnoreSafeArea || !RespondsToSafeArea())
+			if (View is not ISafeAreaView sav || sav.IgnoreSafeArea || !MauiView.RespondsToSafeArea())
 			{
 				return bounds;
 			}
